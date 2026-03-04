@@ -3,10 +3,5 @@
   "rewrites": [
     { "source": "/api/auth", "destination": "/api" },
     { "source": "/api/auth/:path*", "destination": "/api" }
-  ],
-  "functions": {
-    "api/index.py": {
-      "runtime": "python3.12"
-    }
-  }
+  ]
 }
