@@ -1,5 +1,6 @@
 {
-  "buildCommand": "mkdir -p api_backend && cp -r ../api/app api_backend/ && cp ../api/requirements.txt api/ && pnpm run build",
+  "installCommand": "npm install",
+  "buildCommand": "mkdir -p api_backend && cp -r ../api/app api_backend/ && cp ../api/requirements.txt api/ && npm run build",
   "rewrites": [
     { "source": "/api/auth", "destination": "/api" },
     { "source": "/api/auth/:path*", "destination": "/api" }
