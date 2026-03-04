@@ -223,6 +223,19 @@ pytest
 
 ---
 
+## Deploying to Vercel (frontend + API)
+
+Both the Next.js app and the FastAPI auth API can run on Vercel in one project.
+
+1. **Import the repo** in the [Vercel dashboard](https://vercel.com/new). Set **Root Directory** to **`apps/web`**.
+2. **Environment variables** (Project → Settings → Environment Variables): add the same vars your API needs (e.g. `DATABASE_URL`, `JWT_SECRET_KEY`, `FRONTEND_ORIGIN`, `REDIS_URL`, SMTP vars). Set `FRONTEND_ORIGIN` to your Vercel URL (e.g. `https://your-project.vercel.app`). For the frontend, set `NEXT_PUBLIC_API_BASE_URL` to that same URL so API calls go to `/api/auth/...` on the same origin.
+3. **Database and Redis** — Use a serverless-friendly Postgres (e.g. [Neon](https://neon.tech), [Supabase](https://supabase.com)) and, if you want rate limiting, [Upstash Redis](https://upstash.com). Run migrations (e.g. from your laptop or a one-off script) against the production DB before relying on the API.
+4. **Deploy** — Vercel will run the build defined in `apps/web/vercel.json`: copy the API app into `api_backend/`, then build Next.js. The FastAPI app is exposed as a serverless function at `/api`; rewrites send `/api/auth` and `/api/auth/*` to it so the auth routes work.
+
+After deployment, log in and sign up at `https://your-project.vercel.app`. Cookies and CORS work because the frontend and API share the same origin.
+
+---
+
 ## API overview
 
 | Method | Endpoint | Description |

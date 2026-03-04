@@ -1,0 +1,12 @@
+{
+  "buildCommand": "mkdir -p api_backend && cp -r ../api/app api_backend/ && cp ../api/requirements.txt api/ && pnpm run build",
+  "rewrites": [
+    { "source": "/api/auth", "destination": "/api" },
+    { "source": "/api/auth/:path*", "destination": "/api" }
+  ],
+  "functions": {
+    "api/index.py": {
+      "runtime": "python3.12"
+    }
+  }
+}

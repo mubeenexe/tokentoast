@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# API copy at build (for Vercel serverless)
+api_backend/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
